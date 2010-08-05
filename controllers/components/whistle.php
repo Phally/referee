@@ -81,16 +81,18 @@
 		 * @param string $string
 		 * @param string $file
 		 * @param integer $line
+		 * @param array $context
 		 * @return null
 		 * @access public
 		 */
-		public function __error($level, $message, $file, $line) {
+
+		public function __error($level, $message, $file, $line, $context) {
 			$url = $this->url;
 			foreach ($this->listeners as $listener=>$configurations) {
 				foreach ($configurations as $configuration) {
 					if ($configuration['levels'] & $level) {
 						$this->objects[$listener]->{$configuration['method']}(
-							compact('level', 'message', 'file', 'line', 'url'),
+							compact('level', 'message', 'file', 'line', 'context', 'url'),
 							$configuration['parameters']
 						);
 					}
