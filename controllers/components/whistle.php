@@ -85,6 +85,9 @@
 		 * @access public
 		 */
 		public function __error($level, $message, $file, $line) {
+			if (error_reporting() == 0) {
+				return;
+			}
 			$url = $this->url;
 			foreach ($this->listeners as $listener=>$configurations) {
 				foreach ($configurations as $configuration) {
