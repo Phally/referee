@@ -68,7 +68,9 @@
 			register_shutdown_function(array($this, '__shutdown'));
 
 			// Store the URL away for writing later
-			$this->url = '/' . $controller->params['url']['url'];
+			if (isset($controller->params['url']['url'])) {
+				$this->url = '/' . $controller->params['url']['url'];
+			}
 
 		}
 
