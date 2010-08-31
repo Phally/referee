@@ -88,8 +88,11 @@
 		 * @access public
 		 */
 		public function __error($level, $message, $file, $line, $context = null) {
-			if (error_reporting() == 0) {
+			if ($file == (CAKE_CORE_INCLUDE_PATH . DS . LIBS . 'view' . DS . 'media.php')) {
 				return;
+			}
+			if (!class_exists('ErrorHandler')) {
+				App::import('Core', 'Error');
 			}
 			$url = $this->url;
 			foreach ($this->listeners as $listener=>$configurations) {
