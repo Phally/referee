@@ -87,7 +87,7 @@
 		 * @return null
 		 * @access public
 		 */
-		public function __error($level, $message, $file, $line, $context) {
+		public function __error($level, $message, $file, $line, $context = null) {
 			if (error_reporting() == 0) {
 				return;
 			}
